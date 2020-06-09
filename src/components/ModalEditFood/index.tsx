@@ -6,8 +6,6 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
-import api from '../../services/api';
-
 interface IFoodPlate {
   id: number;
   name: string;
@@ -22,6 +20,7 @@ interface IModalProps {
   setIsOpen: () => void;
   handleUpdateFood: (food: Omit<IFoodPlate, 'id' | 'available'>) => void;
   editingFood: IFoodPlate;
+  toggleEditModel(): void;
 }
 
 interface IEditFoodData {
@@ -42,6 +41,7 @@ const ModalEditFood: React.FC<IModalProps> = ({
   const handleSubmit = useCallback(
     async (data: IEditFoodData) => {
       handleUpdateFood(data);
+
       setIsOpen();
     },
     [handleUpdateFood, setIsOpen],
